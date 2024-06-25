@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Album Collection</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body style="background-color: lightgray;">
+
+<nav class="navbar navbar-expand-md style=" style="background-image: linear-gradient(to right, #000000, #454545); color: white;">
+    <a class="navbar-brand text-white" href="#">ALBUM COLLECTION</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link text-white" th:href="@{/albums}">Listened Albums</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+
+    <div class ="container">
+        <div class = "row">
+            <h1> Listened Albums </h1>
+        </div>
+
+
+        <div class = "row">
+            <div class = "col-lg-3">
+                <a th:href="@{/albums/new}" class="btn btn-dark btn-sm mb-3">Add Album</a>
+                <div th:if="${deleteMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <span th:text="${deleteMessage}"></span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div th:each="album : ${albums}">
+                </div>
+            </div>
+        </div>
+        <table class = "table table-striped table-bordered">
+            <thead class = "table-dark">
+                <tr>
+                    <th> Title </th>
+                    <th> Artist </th>
+                    <th> Year </th>
+                    <th> Genre </th>
+                    <th> Rating (0-10) </th>
+                    <th> Actions </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each = "album: ${albums}">
+                    <td th:text = "${album.Title}"></td>
+                    <td th:text = "${album.Artist}"></td>
+                    <td th:text = "${album.Year}"></td>
+                    <td th:text = "${album.Genre}"></td>
+                    <td th:text = "${album.Rating}"></td>
+                    <td>
+                        <a th:href = "@{/albums/edit/{id}(id=${album.id})}"
+                            class = "btn btn-dark">Update</a>
+
+                        <a th:href = "@{/albums/{id} (id=${album.id})}"
+                           class = "btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+<script
+        src="https://code.jquery.com/jquery-3.6.0.min.js">
+</script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+</body>
+</html>

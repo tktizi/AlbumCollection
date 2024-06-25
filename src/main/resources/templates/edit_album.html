@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Album Collection</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        .form-control {
+            background-color: lightgray;
+            border: 1px solid;
+            color: #495057;
+        }
+
+        .form-control:focus {
+            background-color: lightgray;
+            color: #495057
+        }
+
+        .container {
+            border: none;
+        }
+    </style>
+
+</head>
+<body style="background-color: lightgray;">
+
+<nav class="navbar navbar-expand-md" style="background-image: linear-gradient(to right, #000000, #454545); color: white;">
+    <a class="navbar-brand text-white" href="#">ALBUM COLLECTION</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link text-white" th:href="@{/albums}">Listened Albums</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" style="background-color: lightgray";>
+            <h1 class="text-center"> Update Album </h1>
+            <div class="card-body">
+                <form th:action="@{/albums/{id}(id=${album.id})}" th:object="${album}" method="POST">
+                    <div class="form-group">
+                        <label> Album Title </label>
+                        <input
+                                type="text"
+                                name="Title"
+                                th:field="*{Title}"
+                                class="form-control"
+                                placeholder="Enter Album Title"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label> Album Artist </label>
+                        <input
+                                type="text"
+                                name="Artist"
+                                th:field="*{Artist}"
+                                class="form-control"
+                                placeholder="Enter Album Artist"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label> Album Year </label>
+                        <input
+                                type="text"
+                                name="Year"
+                                th:field="*{Year}"
+                                class="form-control"
+                                placeholder="Enter Album Year"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label> Album Genre </label>
+                        <input
+                                type="text"
+                                name="Genre"
+                                th:field="*{Genre}"
+                                class="form-control"
+                                placeholder="Enter Album Genre"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label> Album Rating </label>
+                        <input
+                                type="text"
+                                name="Rating"
+                                th:field="*{Rating}"
+                                class="form-control"
+                                placeholder="Enter Album Rating"
+                        />
+                    </div>
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-dark">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
